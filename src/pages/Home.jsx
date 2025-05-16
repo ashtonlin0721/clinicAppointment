@@ -1,7 +1,10 @@
 import React from 'react'
+import DoctorForm from '../components/DoctorForm'
 
 export default function Home() {
   return (
-    <div>Home Sweet Home!!</div>
+    <div>
+        <DoctorForm />
+    </div>
   )
 }
