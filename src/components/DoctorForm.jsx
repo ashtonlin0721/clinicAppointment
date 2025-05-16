@@ -10,10 +10,10 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-import { db, storage, auth } from '../config/config';
+import { db, storage} from '../config/config';
 import { addDoc, collection } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 
 
@@ -32,7 +32,7 @@ export default function DoctorForm() {
     const [imageProgress, setImageProgress] = useState("");
     const [skills, setSkills] = useState([]);
     const navigate = useNavigate();
-    const darkMode = useSelector((state) => state.theme.darkMode);
+    // const darkMode = useSelector((state) => state.theme.darkMode);
 
     const handleDayChange = (event) => {
         const index = skills.indexOf(event.target.value)
@@ -312,7 +312,7 @@ export default function DoctorForm() {
                 </Box>
 
                 <Button 
-                sx={{ backgroundColor: darkMode ? '#333' : 'inherit', color: darkMode ? '#fff' : '#inherit' }}
+                // sx={{ backgroundColor: darkMode ? '#333' : 'inherit', color: darkMode ? '#fff' : '#inherit' }}
                 variant="outlined" color="secondary" type="submit" >Submit</Button>
 
             </form>
