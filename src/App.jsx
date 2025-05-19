@@ -3,15 +3,22 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Home from './pages/Home'
+import { useRoutes } from 'react-router-dom'
+import DoctorListPage from './pages/DoctorListPage'
+import DoctorForm from './components/DoctorForm'
 
 function App() {
-  const [count, setCount] = useState(0)
+  let element = useRoutes([
+    {path: '/', element: <Home />},
+    {path: '/doctorlist', element: <DoctorListPage />},
+    {path: '/doctorform', element: <DoctorForm />},
+  ])
 
   return (
     <>
       <div>
-        <Home />
-        
+        {element}
+
       </div>
     </>
   )
