@@ -80,11 +80,12 @@ export default function BookAppointment() {
   };
 
   const handleBookAppointment = async () => {
+    const newDay = dayjs(date).format('YYYY-MM-DD')
     const appointment = {
       doctorId: doctor.id,
-      patientId: user.uid,
+      patientId: "VGYHycwkzES0GJwNUIKHm0OtRuH2",
       slot: selectedSlot,
-      date: date,
+      date: newDay,
       doctorName: doctor.firstName + " " + doctor.lastName,
       bookedOn: moment().format("YYYY-MM-DD hh:mm A"),
       problem: problem,

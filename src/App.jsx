@@ -7,6 +7,7 @@ import { useRoutes } from 'react-router-dom'
 import DoctorListPage from './pages/DoctorListPage'
 import DoctorForm from './components/DoctorForm'
 import BookAppointment from './pages/BookAppointment'
+import Appointment from './pages/AppointmentPage'
 
 function App() {
   let element = useRoutes([
@@ -14,6 +15,7 @@ function App() {
     {path: '/doctorlist', element: <DoctorListPage />},
     {path: '/doctorform', element: <DoctorForm />},
     {path: '/book-appointment/:id', element: <BookAppointment />},
+    {path: '/appointment/:id', element: <Appointment />}, 
   ])
 
   return (
