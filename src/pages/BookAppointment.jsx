@@ -11,6 +11,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import dayjs from 'dayjs';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 
 
@@ -20,7 +21,9 @@ export default function BookAppointment() {
   const [date, setDate] = useState(dayjs());
   const [bookedSlots = [], setBookedSlots] = useState([]);
   const [problem, setProblem] = useState("");
-  
+  const [user, setUser] = useLocalStorage('user', null);
+
+
   const { id } = useParams();
   const navigate = useNavigate();
   console.log(date);
@@ -83,7 +86,7 @@ export default function BookAppointment() {
     const newDay = dayjs(date).format('YYYY-MM-DD')
     const appointment = {
       doctorId: doctor.id,
-      patientId: "VGYHycwkzES0GJwNUIKHm0OtRuH2",
+      patientId: user?.uid,
       slot: selectedSlot,
       date: newDay,
       doctorName: doctor.firstName + " " + doctor.lastName,

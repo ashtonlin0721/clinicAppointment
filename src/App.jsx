@@ -8,6 +8,7 @@ import DoctorListPage from './pages/DoctorListPage'
 import DoctorForm from './components/DoctorForm'
 import BookAppointment from './pages/BookAppointment'
 import Appointment from './pages/AppointmentPage'
+import SignInPage from './pages/Signin'
 
 function App() {
   let element = useRoutes([
@@ -16,6 +17,7 @@ function App() {
     {path: '/doctorform', element: <DoctorForm />},
     {path: '/book-appointment/:id', element: <BookAppointment />},
     {path: '/appointment/:id', element: <Appointment />}, 
+    {path: '/signin', element: <SignInPage />},
   ])
 
   return (

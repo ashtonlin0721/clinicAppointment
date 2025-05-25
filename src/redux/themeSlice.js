@@ -1,15 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-export const loaderSlice = createSlice({
-  name: "loader",
+
+
+const themeSlice = createSlice({
+  name: 'theme',
   initialState: {
-    loading: false,
+    darkMode: false,
   },
   reducers: {
-    ShowLoader: (state, action) => {
-      state.loading = action.payload;
+    toggleDarkMode: (state) => {
+      state.darkMode = !state.darkMode;
     },
   },
 });
 
-export const { ShowLoader } = loaderSlice.actions;
+export const { toggleDarkMode } = themeSlice.actions;
+export default themeSlice.reducer;
