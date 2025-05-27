@@ -10,6 +10,8 @@ import BookAppointment from './pages/BookAppointment'
 import Appointment from './pages/AppointmentPage'
 import SignInPage from './pages/Signin'
 import MyAppointmentPage from './pages/myAppointmentPage'
+import Header from './components/Header'
+import { useEffect } from 'react'
 
 function App() {
   let element = useRoutes([
@@ -22,9 +24,15 @@ function App() {
     {path: '/myappointments', element: <MyAppointmentPage />},
   ])
 
+  //   useEffect(() => {
+  //   window.location.reload(); // reloads the current page
+  // }, []); 
+
+
   return (
     <>
       <div>
+        <Header />
         {element}
 
       </div>
