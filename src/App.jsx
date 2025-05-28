@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { adminAccountId } from './config/config'
 import { Navigate } from 'react-router-dom'
+import Footer from './components/Footer'
 
 
 
@@ -46,39 +47,40 @@ function App() {
     return (
       <>
         {shouldDisplayHeader && <Header />}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          
-          <Route path="/signin" element={<SignInPage />} />
-          <Route
-            path="/createdoctor"
-            element={isAdmin ? <CreateDoctor /> : <Navigate to="/" />}
-          />
-          <Route
-            path="doctorlist"
-            element={isLoggedIn ? <DoctorListPage /> : <Navigate to="/" />}
+          <Routes>
+            <Route path="/" element={<Home />} />
             
-          />
-          
-          <Route
-            path="/book-appointment/:id"
-            element={isLoggedIn ? <BookAppointment /> : <Navigate to="/" />
-            }
-          />
-          
-          <Route
-            path="/appointment/:id"
-            element={isLoggedIn ? <AppointmentPage /> : <Navigate to="/" />
-            }
-          />
+            <Route path="/signin" element={<SignInPage />} />
+            <Route
+              path="/createdoctor"
+              element={isAdmin ? <CreateDoctor /> : <Navigate to="/" />}
+            />
+            <Route
+              path="doctorlist"
+              element={isLoggedIn ? <DoctorListPage /> : <Navigate to="/" />}
+              
+            />
+            
+            <Route
+              path="/book-appointment/:id"
+              element={isLoggedIn ? <BookAppointment /> : <Navigate to="/" />
+              }
+            />
+            
+            <Route
+              path="/appointment/:id"
+              element={isLoggedIn ? <AppointmentPage /> : <Navigate to="/" />
+              }
+            />
 
-          <Route
-            path="/myappointments"
-            element={isLoggedIn ? <MyAppointmentPage /> : <Navigate to="/" />
-            }
-          />
+            <Route
+              path="/myappointments"
+              element={isLoggedIn ? <MyAppointmentPage /> : <Navigate to="/" />
+              }
+            />
 
-        </Routes>
+          </Routes>
+          <Footer />
 
 
       </>
