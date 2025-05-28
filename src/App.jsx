@@ -1,39 +1,104 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Home from './pages/Home'
-import { useRoutes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import DoctorListPage from './pages/DoctorListPage'
-import DoctorForm from './components/DoctorForm'
 import BookAppointment from './pages/BookAppointment'
-import Appointment from './pages/AppointmentPage'
+import AppointmentPage from './pages/AppointmentPage'
 import SignInPage from './pages/Signin'
 import MyAppointmentPage from './pages/myAppointmentPage'
 import Header from './components/Header'
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { adminAccountId } from './config/config'
+import { Navigate } from 'react-router-dom'
+
+
+
 
 function App() {
-  let element = useRoutes([
-    {path: '/', element: <Home />},
-    {path: '/doctorlist', element: <DoctorListPage />},
-    {path: '/doctorform', element: <DoctorForm />},
-    {path: '/book-appointment/:id', element: <BookAppointment />},
-    {path: '/appointment/:id', element: <Appointment />}, 
-    {path: '/signin', element: <SignInPage />},
-    {path: '/myappointments', element: <MyAppointmentPage />},
-  ])
+  const userInfo = JSON.parse(localStorage.getItem('user'));
+  console.log(userInfo);
+  const isLoggedIn = userInfo !== null;
+  const isAdmin = isLoggedIn && userInfo.uid === adminAccountId;
+  const { loading } = useSelector((state) => state.loader);
+  const darkMode = useSelector((state) => state.theme.darkMode);
 
-  //   useEffect(() => {
-  //   window.location.reload(); // reloads the current page
-  // }, []); 
+  const theme = createTheme({
+    palette: {
+      mode: darkMode ? 'dark' : 'light',
+    },
+  });
+    const AppWrapper = () => {
+    const location = useLocation();
+    const shouldDisplayHeader = location.pathname !== '/signin' && location.pathname !== '/register' && location.pathname !== '/resetpassword';
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      console.log('home page');
+      navigate('/');
+    }
+    , []);
+    
+    
+    return (
+      <>
+        {shouldDisplayHeader && <Header />}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          
+          <Route path="/signin" element={<SignInPage />} />
+          <Route
+            path="/createdoctor"
+            element={isAdmin ? <CreateDoctor /> : <Navigate to="/" />}
+          />
+          <Route
+            path="doctorlist"
+            element={isLoggedIn ? <DoctorListPage /> : <Navigate to="/" />}
+            
+          />
+          
+          <Route
+            path="/book-appointment/:id"
+            element={isLoggedIn ? <BookAppointment /> : <Navigate to="/" />
+            }
+          />
+          
+          <Route
+            path="/appointment/:id"
+            element={isLoggedIn ? <AppointmentPage /> : <Navigate to="/" />
+            }
+          />
+
+          <Route
+            path="/myappointments"
+            element={isLoggedIn ? <MyAppointmentPage /> : <Navigate to="/" />
+            }
+          />
+
+        </Routes>
+
+
+      </>
+
+    )
+  }
+
+
+    
+
+
+
+
+
 
 
   return (
     <>
       <div>
-        <Header />
-        {element}
+        <AppWrapper />
 
       </div>
     </>
