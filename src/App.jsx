@@ -15,6 +15,12 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { adminAccountId } from './config/config'
 import { Navigate } from 'react-router-dom'
 import Footer from './components/Footer'
+import Cardiology from './pages/Cardiology'
+import FamilyDoctor from './pages/FamilyDoctor'
+import Neurology from './pages/Neurology'
+import Pediatrics from './pages/Pediatrics'
+import Orthopedic from './pages/Orthopedic'
+import Dermatology from './pages/Dermatology'
 
 
 
@@ -78,6 +84,42 @@ function App() {
               element={isLoggedIn ? <MyAppointmentPage /> : <Navigate to="/" />
               }
             />
+
+            <Route
+            path="/cardiologist"
+            element={isLoggedIn ? <Cardiology /> : <Navigate to="/" />
+            }
+          />
+
+                    <Route
+            path="/familydoctor"
+            element={isLoggedIn ? <FamilyDoctor /> : <Navigate to="/" />
+            }
+          />
+
+          <Route
+            path="/neurology"
+            element={isLoggedIn ? <Neurology /> : <Navigate to="/" />
+            }
+          />
+
+          <Route
+            path="/pediatrics"
+            element={isLoggedIn ? <Pediatrics /> : <Navigate to="/" />
+            }
+          />
+
+          <Route
+            path="/orthopedic"
+            element={isLoggedIn ? <Orthopedic /> : <Navigate to="/" />
+            }
+          />
+
+          <Route
+            path="/dermatology"
+            element={isLoggedIn ? <Dermatology /> : <Navigate to="/" />
+            }
+          />
 
           </Routes>
           <Footer />
