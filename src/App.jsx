@@ -21,7 +21,7 @@ import Neurology from './pages/Neurology'
 import Pediatrics from './pages/Pediatrics'
 import Orthopedic from './pages/Orthopedic'
 import Dermatology from './pages/Dermatology'
-
+import RegisterPage from './pages/Register'
 
 
 
@@ -55,7 +55,8 @@ function App() {
         {shouldDisplayHeader && <Header />}
           <Routes>
             <Route path="/" element={<Home />} />
-            
+            <Route path="/register" element={<RegisterPage />} />
+
             <Route path="/signin" element={<SignInPage />} />
             <Route
               path="/createdoctor"
